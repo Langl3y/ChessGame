@@ -58,4 +58,12 @@ public class Game : MonoBehaviour
             SetPosition(playerWhite[i]);
         }
     }
+
+    public GameObject Create(string name, int x, int y){
+        
+    }
+
+    public void SetPosition(GameObject obj){
+        
+    }
 }
