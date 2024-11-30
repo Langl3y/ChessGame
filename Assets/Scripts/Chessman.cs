@@ -20,7 +20,7 @@ public class Chessman : MonoBehaviour
 
         SetCoords();
 
-        switch(this.game){
+        switch(this.name){
             case "black_queen": this.GetComponent<SpriteRenderer>().sprite = black_queen; player = "black"; break;
             case "black_knight": this.GetComponent<SpriteRenderer>().sprite = black_knight; player = "black"; break;
             case "black_bishop": this.GetComponent<SpriteRenderer>().sprite = black_bishop; player = "black"; break;
@@ -47,5 +47,21 @@ public class Chessman : MonoBehaviour
         y += -2.3f;
 
         this.transform.position = new Vector3(x, y, -1.0f);
+    }
+
+    public int GetXBoard(){
+        return xBoard;
+    }
+
+    public int GetYBoard(){
+        return yBoard;
+    }
+
+    public void SetXBoard(int x){
+        xBoard = x;
+    }
+
+    public void SetYBoard(int y){
+        yBoard = y;
     }
 }
