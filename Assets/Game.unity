@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 1327429841}
   - component: {fileID: 1327429840}
   m_Layer: 0
-  m_Name: board_0
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1791355036}
   m_Layer: 0
   m_Name: Controller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
