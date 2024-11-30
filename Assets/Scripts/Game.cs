@@ -60,10 +60,19 @@ public class Game : MonoBehaviour
     }
 
     public GameObject Create(string name, int x, int y){
+        GameObject obj = Instantiate(Chesspiece, new Vector3( 0, 0, -1), Quaternion.identity);
+        Chessman cm = obj.GetComponent<Chessman>();
         
+        cm.name = name;
+        cm.SetXBoard(x);
+        cm.SetYBoard(y);
+        cm.Activate();
+        
+        return obj;
     }
 
     public void SetPosition(GameObject obj){
-        
+        Chessman cm = obj.GetComponent<Chessman>();
+        positions[cm.GetXBoard(), cm.GetYBoard()] = obj;
     }
 }
