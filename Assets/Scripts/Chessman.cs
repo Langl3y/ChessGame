@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chessman : MonoBehaviour
 {
     public GameObject Controller;
-    public GameObject MovePlate;
+    public GameObject movePlate;
 
     private int xBoard = -1;
     private int yBoard = -1;
@@ -40,7 +40,7 @@ public class Chessman : MonoBehaviour
         float x = xBoard;
         float y = yBoard;
 
-        y *= 0.66f;
+        x *= 0.66f;
         y *= 0.66f;
 
         x += -2.3f;
@@ -129,17 +129,17 @@ public class Chessman : MonoBehaviour
     }
 
     public void LineMovePlate(int xIncrement, int yIncrement){
-        Game sc = controller.GetComponent<Game>();
+        Game sc = Controller.GetComponent<Game>();
         int x = xBoard + xIncrement;
         int y = yBoard + yIncrement;
 
-        while (sc.PositionOnBoard(x, y) && sc.GetPosition(x, y) == null){
+        while (sc.PositinonOnBoard(x, y) && sc.GetPosition(x, y) == null){
             MovePlateSpawn(x, y);
             x += xIncrement;
             y += yIncrement;
         }
 
-        if (sc.PositionOnBoard(x, y) && sc.GetPosition(x, y).GetComponent<Chessman>().player != player){
+        if (sc.PositinonOnBoard(x, y) && sc.GetPosition(x, y).GetComponent<Chessman>().player != player){
                 MovePlateAttackSpawn(x, y);
         }
     }
@@ -167,8 +167,8 @@ public class Chessman : MonoBehaviour
     }
 
     public void PointMovePlate(int x, int y){
-        Game sc = controller.GetComponent<Game>();
-        if (sc.PositionOnBoard(x, y)){
+        Game sc = Controller.GetComponent<Game>();
+        if (sc.PositinonOnBoard(x, y)){
             GameObject cp = sc.GetPosition(x, y);
             if (cp == null){
                     MovePlateSpawn(x, y);
@@ -180,18 +180,18 @@ public class Chessman : MonoBehaviour
     }
 
     public void PawnMovePlate(int x, int y){
-        Game sc = controller.GetComponent<Game>();
-        if (sc.PositionOnBoard(x, y)){
+        Game sc = Controller.GetComponent<Game>();
+        if (sc.PositinonOnBoard(x, y)){
             if (sc.GetPosition(x, y) == null){
                 MovePlateSpawn(x, y);
             }
 
-            if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x + 1, y) != null && sc.GetPosition(x + 1,
+            if (sc.PositinonOnBoard(x + 1, y) && sc.GetPosition(x + 1, y) != null && sc.GetPosition(x + 1,
             y).GetComponent<Chessman>().player != player){
                 MovePlateAttackSpawn(x + 1, y);
             }
 
-            if (sc.PositionOnBoard(x - 1, y) && sc.GetPosition(x - 1, y) != null && sc.GetPosition(x - 1,
+            if (sc.PositinonOnBoard(x - 1, y) && sc.GetPosition(x - 1, y) != null && sc.GetPosition(x - 1,
             y).GetComponent<Chessman>().player != player){
                 MovePlateAttackSpawn(x - 1, y);
             }
@@ -209,6 +209,7 @@ public class Chessman : MonoBehaviour
         y += -2.3f;
 
         GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+
         MovePlate mpScript = mp.GetComponent<MovePlate>();
         mpScript.SetReference(gameObject);
         mpScript.SetCoords(matrixX, matrixY);
