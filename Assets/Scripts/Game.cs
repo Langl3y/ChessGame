@@ -14,6 +14,8 @@ public class Game : MonoBehaviour
 
     private bool gameOver = false ;
 
+    private bool isMoving = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {   
@@ -87,8 +89,7 @@ public class Game : MonoBehaviour
     }
 
     public bool PositinonOnBoard(int x, int y){
-        if (x < 0 || y < 0 || x >= positions.GetLength(0) || y >= positions.GetLength(1))
-        return false;
+        if (x < 0 || y < 0 || x >= positions.GetLength(0) || y >= positions.GetLength(1)) return false;
         return true; 
     }
 
@@ -100,15 +101,26 @@ public class Game : MonoBehaviour
         return gameOver;
     }
 
-    public void NextTurn(){
-        if (currentPlayer == "white")
+    public void NextTurn()
+    {
+        GameObject[] movePlates = GameObject.FindGameObjectsWithTag("MovePlate");
+        for (int i = 0; i < movePlates.Length; i++)
         {
-            currentPlayer = "black";
+            Destroy(movePlates[i]);
         }
-        else
-        {
-            currentPlayer = "white";
-        }
+
+        currentPlayer = (currentPlayer == "white") ? "black" : "white";
+        isMoving = false;
+    }
+
+    public void StartMove()
+    {
+        isMoving = true;
+    }
+
+    public bool CanMove(string player)
+    {
+        return !isMoving && !gameOver && currentPlayer == player;
     }
 
     public void Update(){

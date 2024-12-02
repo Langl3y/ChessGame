@@ -77,9 +77,9 @@ public class Chessman : MonoBehaviour
     public void DestroyMovePlates()
     {
         GameObject[] movePlates = GameObject.FindGameObjectsWithTag("MovePlate");
-        foreach (GameObject movePlate in movePlates)
+        for (int i = 0; i < movePlates.Length; i++)
         {
-            Destroy(movePlate);
+            Destroy(movePlates[i]);
         }
     }
 
